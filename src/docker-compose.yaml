@@ -27,4 +27,9 @@ services:
       - postgres
 
 volumes:
-  pgdata:
+  pgdata:  catalog.api:
+    image: catalog.api
+    build:
+      context: .
+      dockerfile: Services/Catalog/Catalog.API/Dockerfile
+

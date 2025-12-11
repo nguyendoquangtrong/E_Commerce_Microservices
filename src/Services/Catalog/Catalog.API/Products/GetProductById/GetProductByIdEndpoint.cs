@@ -1,5 +1,7 @@
 namespace Catalog.API.Products.GetProductById;
 
+public record GetProductByIdRequest(int? PageNumber, int? PageSize);
+
 public record GetProductByIdResponse(Product Product);
 
 public class GetProductByIdEndpoint : ICarterModule
