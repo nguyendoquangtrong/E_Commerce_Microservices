@@ -1,10 +1,3 @@
-
-
-using BuildingBlocks.Exceptions.Handler;
-using Catalog.API.Data;
-using HealthChecks.UI.Client;
-using Microsoft.AspNetCore.Diagnostics.HealthChecks;
-
 var builder = WebApplication.CreateBuilder(args);
 var assembly = typeof(Program).Assembly;
 
