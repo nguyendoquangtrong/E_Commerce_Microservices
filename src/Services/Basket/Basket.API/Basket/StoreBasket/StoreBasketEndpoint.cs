@@ -16,7 +16,7 @@ public class StoreBasketEndpoint : ICarterModule
         {
             var command = request.Adapt<StoreBasketCommand>();
             var result = await sender.Send(command);
-            var response = result.Adapt<StoreBasketResponse>();
+            var response = result.Adapt<StoreBasketResponse>(); 
             return Results.Ok(response);
         }).WithName("StoreBasket")
         .Produces<StoreBasketResponse>(StatusCodes.Status200OK)
