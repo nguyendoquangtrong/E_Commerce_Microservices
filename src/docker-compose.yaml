@@ -56,8 +56,51 @@ services:
     build:
       context: .
       dockerfile: Services/Catalog/Catalog.API/Dockerfile
+    container_name: catalog-api
+    ports:
+      - "6000:8080"
+      - "6060:8081"
+    environment:
+      - ConnectionStrings__Database=Server=catalogdb;Port=5432;Database=CatalogDB;User Id=admin;Password=admin123;
+    depends_on:
+      - catalogdb
+  
+  basket.api:
+    image: basket.api
+    build:
+      context: .
+      dockerfile: Services/Basket/Basket.API/Dockerfile
+    container_name: basket-api
+    ports:
+      - "6001:8080"
+      - "6061:8081"
+    environment:
+      - ConnectionStrings__Redis=redis-server:6379
+      - ConnectionStrings__Database=Server=basketdb;Port=5432;Database=BasketDB;User Id=admin;Password=admin123;
+    depends_on:
+      - basketdb
+      - redis
+      
+  discount.grpc:
+    image: discount.grpc
+    build:
+      context: .
+      dockerfile: Services/Discount/Discount.Grpc/Dockerfile
+    container_name: discount-grpc
+    ports:
+      - "6002:8080"
+      - "6062:8081"
+    environment:
+      - ConnectionStrings__Database=Data Source=/app/data/discountdb.db
+      - Kestrel__EndpointDefaults__Protocols=Http2
+    volumes:
+      - ./discount_data:/app/data
+    
+
 
 volumes:
   catalog_data:
   basket_data:
-  redis_data:
+  redis_data:  
+
+

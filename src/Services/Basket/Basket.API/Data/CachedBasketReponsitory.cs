@@ -1,7 +1,3 @@
-using System.Text.Json;
-using Basket.API.Models;
-using Microsoft.Extensions.Caching.Distributed;
-
 namespace Basket.API.Data;
 
 public class CachedBasketReponsitory(IBasketReponsitory reponsitory, IDistributedCache cache) : IBasketReponsitory

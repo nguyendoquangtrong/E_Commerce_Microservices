@@ -1,9 +1,3 @@
-using Basket.API.Data;
-using Basket.API.Models;
-using BuildingBlocks.CQRS;
-using FluentValidation;
-using MediatR;
-
 namespace Basket.API.Basket.StoreBasket;
 
 public record StoreBasketCommand(ShoppingCart Cart) : IRequest<StoreBasketResult>;

@@ -1,7 +1,3 @@
-using Basket.API.Exceptions;
-using Basket.API.Models;
-using Marten;
-
 namespace Basket.API.Data;
 
 public class BasketReponsitory(IDocumentSession session) : IBasketReponsitory

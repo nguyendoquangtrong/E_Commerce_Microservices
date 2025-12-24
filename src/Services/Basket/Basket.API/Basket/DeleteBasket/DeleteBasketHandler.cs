@@ -1,9 +1,3 @@
-using System.Data;
-using Basket.API.Data;
-using BuildingBlocks.CQRS;
-using FluentValidation;
-using MediatR;
-
 namespace Basket.API.Basket.DeleteBasket;
 
 public record DeleteBasketCommand(string UserName) : IRequest<DeleteBasketResult>;
@@ -21,9 +15,8 @@ internal class DeleteBasketHandler(IBasketReponsitory reponsitory) : ICommandHan
 {
     public async Task<DeleteBasketResult> Handle(DeleteBasketCommand command, CancellationToken cancellationToken)
     {
-        //Todo: Update db
+
         await reponsitory.DeleteBasket(command.UserName, cancellationToken);
-        //Todo: Update redis
         return new DeleteBasketResult(true);
     }
 }

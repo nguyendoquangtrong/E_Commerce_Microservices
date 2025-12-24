@@ -1,11 +1,3 @@
-using Basket.API.Data;
-using Basket.API.Models;
-using BuildingBlocks.Behaviors;
-using BuildingBlocks.Exceptions.Handler;
-using Carter;
-using FluentValidation;
-using Marten;
-
 var builder = WebApplication.CreateBuilder(args);
 var assembly = typeof(Program).Assembly;
 //Add services to container.
@@ -28,14 +20,19 @@ builder.Services.AddStackExchangeRedisCache(opt =>
 builder.Services.AddExceptionHandler<CustomExceptionHandler>();
 builder.Services.AddValidatorsFromAssembly(assembly);
 builder.Services.AddCarter();
-
+builder.Services.AddHealthChecks()
+    .AddNpgSql(builder.Configuration.GetConnectionString("Database"))
+    .AddRedis(builder.Configuration.GetConnectionString("Redis"));
 
 builder.Services.AddScoped<IBasketReponsitory, BasketReponsitory>();
 builder.Services.Decorate<IBasketReponsitory, CachedBasketReponsitory>();
-
 
 //Configure the HTTP request pipeline
 var app = builder.Build();
 app.MapCarter();
 app.UseExceptionHandler(options => { });
+app.UseHealthChecks("/health", new HealthCheckOptions
+{
+    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+});
 app.Run();

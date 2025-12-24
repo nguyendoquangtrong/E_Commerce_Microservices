@@ -1,5 +1,3 @@
-using Basket.API.Models;
-
 namespace Basket.API.Data;
 
 public interface  IBasketReponsitory
