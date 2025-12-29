@@ -17,3 +17,5 @@ global using Microsoft.Extensions.Caching.Distributed;
 global using Basket.API.Data;
 global using Basket.API.Models;
 global using Basket.API.Exceptions;
+
+global using Discount.Grpc;

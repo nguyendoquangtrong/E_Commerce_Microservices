@@ -19,14 +19,14 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Content Include="..\..\.dockerignore">
-        <Link>.dockerignore</Link>
-      </Content>
+      <None Remove="Protos\discount.proto" />
+      <Protobuf Include="Protos\discount.proto" GrpcServices="Server"/>
     </ItemGroup>
 
     <ItemGroup>
-      <None Remove="Protos\discount.proto" />
-      <Protobuf Include="Protos\discount.proto" GrpcServices="Server"/>
+      <Content Include="..\..\..\.dockerignore">
+        <Link>.dockerignore</Link>
+      </Content>
     </ItemGroup>
 
 </Project>

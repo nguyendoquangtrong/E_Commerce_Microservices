@@ -24,6 +24,9 @@ builder.Services.AddHealthChecks()
     .AddNpgSql(builder.Configuration.GetConnectionString("Database"))
     .AddRedis(builder.Configuration.GetConnectionString("Redis"));
 
+builder.Services.AddGrpcClient<DiscountProtoService.DiscountProtoServiceClient>(options =>
+    options.Address = new Uri(builder.Configuration["GrpcSettings:DiscountUrl"]!)); 
+
 builder.Services.AddScoped<IBasketReponsitory, BasketReponsitory>();
 builder.Services.Decorate<IBasketReponsitory, CachedBasketReponsitory>();
 

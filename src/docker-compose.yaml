@@ -77,9 +77,11 @@ services:
     environment:
       - ConnectionStrings__Redis=redis-server:6379
       - ConnectionStrings__Database=Server=basketdb;Port=5432;Database=BasketDB;User Id=admin;Password=admin123;
+      - GrpcSettings__DiscountUrl=discount-grpc:8080
     depends_on:
       - basketdb
       - redis
+      - discount.grpc
       
   discount.grpc:
     image: discount.grpc
@@ -94,13 +96,13 @@ services:
       - ConnectionStrings__Database=Data Source=/app/data/discountdb.db
       - Kestrel__EndpointDefaults__Protocols=Http2
     volumes:
-      - ./discount_data:/app/data
-    
+      - discount_data:/app/data    
 
 
 volumes:
   catalog_data:
   basket_data:
-  redis_data:  
+  redis_data:
+  discount_data:
 
 
