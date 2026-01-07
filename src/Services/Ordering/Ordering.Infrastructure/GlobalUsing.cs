@@ -7,3 +7,6 @@ global using Ordering.Domain.Models;
 global using Ordering.Domain.ValueObjects;
 global using Ordering.Domain.Enums;
 global using System.Reflection;
+global using Microsoft.EntityFrameworkCore.ChangeTracking;
+global using Microsoft.EntityFrameworkCore.Diagnostics;
+global using Ordering.Domain.Abstractions;
