@@ -25,7 +25,7 @@ builder.Services.AddHealthChecks()
 // configure the HTTP request pipeline
 var app = builder.Build();
 app.MapCarter();
-app.UseExceptionHandler(options => { });
+app.UseExceptionHandler(optioxns => { });
 app.UseHealthChecks("/health", new HealthCheckOptions
 {
     ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse

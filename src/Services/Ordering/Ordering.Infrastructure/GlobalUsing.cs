@@ -10,3 +10,5 @@ global using System.Reflection;
 global using Microsoft.EntityFrameworkCore.ChangeTracking;
 global using Microsoft.EntityFrameworkCore.Diagnostics;
 global using Ordering.Domain.Abstractions;
+global using MediatR;
+global using Ordering.Application.Data;

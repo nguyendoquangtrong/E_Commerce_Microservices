@@ -14,7 +14,7 @@ public class OrderConfiguration : IEntityTypeConfiguration<Order>
             .HasForeignKey(o => o.CustomerId)
             .IsRequired();
 
-        builder.HasMany<OrderItem>()
+        builder.HasMany(o => o.OrderItems)
             .WithOne()
             .HasForeignKey(oi => oi.OrderId);
 
@@ -82,7 +82,7 @@ public class OrderConfiguration : IEntityTypeConfiguration<Order>
                 .IsRequired();
             paymentBuilder.Property(p => p.Expiration)
                 .HasMaxLength(10);
-            paymentBuilder.Property(p => p.CVV)
+            paymentBuilder.Property(p => p.Cvv)
                 .HasMaxLength(3);
             paymentBuilder.Property(p => p.PaymentMethod);
         });

@@ -32,7 +32,7 @@ public class Order : Aggregate<OrderId>
             Payment = payment,
         };
         
-        order.AddDomainEvent(new OrderCreatedDomainEvent(order));
+        order.AddDomainEvent(new OrderCreatedEvent(order));
         return order;
     }
 
